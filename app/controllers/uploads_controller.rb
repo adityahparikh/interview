@@ -1,4 +1,5 @@
 class UploadsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_upload, only: %i[ show edit update destroy ]
 
   # GET /uploads or /uploads.json

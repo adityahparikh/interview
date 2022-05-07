@@ -17,27 +17,20 @@
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
-    
-
-            <th>Title</th>
-            <th>Description</th>
-            
-          <th></th>
-        
+        <th>Title</th>
+        <th>Description</th>        
+        <th># of files</th>        
+        <th></th>
       </tr>
     </thead>
 
     <tbody>
       <% @uploads.each do |upload| %>
         <%= content_tag :tr, id: dom_id(upload), class: dom_class(upload) do %>
-          
-
-                      <td><%= upload.title %></td>
-                      <td><%= upload.description %></td>
-          
-          
-            <td><%= link_to 'Show', upload %></td>
-          
+          <td><%= upload.title %></td>
+          <td><%= upload.description %></td>      
+          <td><%= upload.files.length %></td>    
+          <td><%= link_to 'Show', upload %></td>   
         <% end %>
       <% end %>
     </tbody>

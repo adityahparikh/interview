@@ -13,7 +13,13 @@
   <dd><%= @upload.title %></dd>
   <dt>Description:</dt>
   <dd><%= @upload.description %></dd>
+  <dt>Files:</dt>
   <% @upload.files.each do |file| %>
-   <dd><%= link_to file.filename, rails_blob_path(file, disposition: :attachment) %></dd>
+   <li>
+     <%= link_to file.filename, rails_blob_path(file, disposition: :attachment) %>
+     <% if @upload.files.length > 1 %>
+      <%= link_to 'Remove', delete_file_upload_url(file.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+     <% end %>
+   </li>
  <% end %>
 </dl>

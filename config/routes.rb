@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   resources :uploads do
     member do
       delete :delete_file
+      post :shortern_url
     end
   end
+  get '/tiny/:short_id', to: 'links#show'
   get '/privacy', to: 'home#privacy'
   get '/terms', to: 'home#terms'
 authenticate :user, lambda { |u| u.admin? } do

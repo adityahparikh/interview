@@ -1,8 +1,22 @@
-<% upload.files.each do |file| %>
-   <li>
-     <%= link_to file.filename, rails_blob_path(file, disposition: :attachment) %>
-     <% if @upload.files.length > 1 %>
-      <%= link_to 'Remove', delete_file_upload_url(file.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-     <% end %>
-   </li>
- <% end %>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>File name</th>
+        <th>Short public url</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% upload.files.each do |file| %>
+        <%= content_tag :tr, id: dom_id(file), class: dom_class(file) do %>
+          <td><%= link_to file.filename, rails_blob_path(file, disposition: :attachment) %></td>
+          <% short_url = get_short_url_if_present(file) %>
+          <td><%= link_to short_url, short_url, target: "_blank" %></td>   
+          <td><%= link_to 'Remove', delete_file_upload_url(file.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>   
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

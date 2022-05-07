@@ -4,7 +4,7 @@ class UploadsController < ApplicationController
 
   # GET /uploads or /uploads.json
   def index
-    @uploads = Upload.all
+    @uploads = Upload.where(user: current_user)
   end
 
   # GET /uploads/1 or /uploads/1.json
@@ -23,6 +23,7 @@ class UploadsController < ApplicationController
   # POST /uploads or /uploads.json
   def create
     @upload = Upload.new(upload_params)
+    @upload.user = current_user
 
     respond_to do |format|
       if @upload.save

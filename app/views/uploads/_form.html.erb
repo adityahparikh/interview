@@ -1,0 +1,44 @@
+<%= form_with(model: upload) do |form| %>
+  <% if upload.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(upload.errors.count, "error") %> prohibited this upload from being saved:</h2>
+
+      <ul>
+      <% upload.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :title, class: 'form-label' %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description, class: 'form-label' %>
+    <%= form.text_area :description, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+   <%= form.label  upload.persisted? ? :add__more_files : :add_files, class: 'form-label' %>
+   <%= form.file_field :files, multiple: true, class: 'form-control' %>
+ </div>
+
+  <div class="mb-3">
+    <% if upload.persisted? %>
+      <div class="float-end">
+        <%= link_to 'Destroy', upload, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if upload.persisted? %>
+      <%= link_to "Cancel", upload, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", uploads_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

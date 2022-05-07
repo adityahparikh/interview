@@ -1,0 +1,19 @@
+<div class="page-header">
+  <%= link_to uploads_path, class: 'btn btn-default' do %>
+    All Uploads
+  <% end %>
+  <%= link_to edit_upload_path(@upload), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show upload</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Title:</dt>
+  <dd><%= @upload.title %></dd>
+  <dt>Description:</dt>
+  <dd><%= @upload.description %></dd>
+  <% @upload.files.each do |file| %>
+   <dd><%= link_to file.filename, rails_blob_path(file, disposition: :attachment) %></dd>
+ <% end %>
+</dl>

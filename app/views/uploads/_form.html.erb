@@ -30,7 +30,7 @@
 
   <div class="mb-3">
    <%= form.label  upload.persisted? ? :add__more_files : :add_files, class: 'form-label' %>
-   <%= form.file_field :files, multiple: true, class: 'form-control' %>
+   <%= form.file_field :files, multiple: true, class: 'form-control', direct_upload: true %>
  </div>
 
   <div class="mb-3">

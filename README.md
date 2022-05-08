@@ -19,6 +19,10 @@ obtained from the system.
 - Ruby-2.6.5
 - Rails-6.1.5
 
+## gems used
+- **devise** for authentication purpose
+- **ActiveStorage** for file upload
+
 Steps required to setup the application.
 
 - Clone the repository ```git clone https://github.com/adityahparikh/interview.git``` and go to the folder ```cd interview```
